@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EMSHT Eyob Circus </title>
+  <meta name="description" content="Book your next magical circus show with Dani Circus. Acrobats, magic, and family fun across the UK." />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" />
+  <script src="//code.tidio.co/4v4brpy4pdyanllawdabx1avuh1ryaqj.js" async></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color:black;
+      color: white
+    }
+
+    html { scroll-behavior: smooth; }
+
+    header {
+      background-color: #0c4130;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      color:white;
+      font-weight: bold;
+      background: linear-gradient(to right, #f7aa04, #0f6413);
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      color: rgb(250, 137, 8);
+      cursor: pointer;
+    }
+
+    nav { position: relative; }
+
+    .navbar {
+      display: flex;
+      list-style: none;
+      gap: 1rem;
+    }
+
+    .navbar a {
+      color: #064a29;
+      background-color: #dcdbda;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+    }
+
+    .navbar a:hover {
+      background-color: #fa6908;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle { display: block; }
+
+      .navbar {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 130px;
+        flex-direction: column;
+        background-color: #0c4130;
+        padding: 4rem 1rem 1rem 1rem;
+        transition: right 0.4s ease-in-out;
+        z-index: 1001;
+        border-top-left-radius: 16px;
+        border-bottom-left-radius: 16px;
+      }
+
+      .navbar.active { right: 0; }
+
+      .close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-size: 2rem;
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 0.2rem 0.5rem;
+      }
+
+      .navbar li { margin: 1rem 0; }
+      .navbar a { width: 100%; text-align: center; }
+    }
+
+    @media (min-width: 769px) {
+      .close-btn { display: none; }
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      color: #e57c23;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    section img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0rem auto;
+      border-radius: 12px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: #63085d;
+      color: white;
+    }
+
+    footer a { color: #ffd580; }
+
+    #bookingForm {
+      background-color: #fff;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 6px 4px 12px rgba(0,0,0,0.1);
+      color: #106b11;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-weight: bold;
+    }
+
+    input, textarea, select, button {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1.1rem;
+    }
+
+    button {
+      background-color: #e57c23;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff9f45;
+    }
+
+    .success-message {
+      display: none;
+      margin-top: 1rem;
+      color: green;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .popup {
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      z-index: 2000;
+      display: none;
+      text-align: center;
+      max-width: 90%;
+    }
+
+    .popup h3 {
+      color: #0c4130;
+      margin-bottom: 6rem;
+    }
+
+    .popup button {
+      margin-top: 1rem;
+      padding: 0.7rem 1.5rem;
+      background-color: #e57c23;
+    }
+
+    @media (max-width: 500px) {
+      input, textarea, select, button {
+        font-size: 1rem;
+        padding: 0.8rem;
+      }
+
+      .logo {
+        font-size: 2rem;
+      }
+    } 
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background-color: #e57c23;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50%;
+      text-decoration: none;
+      font-size: 1.5rem;
+      transition: background-color 0.3s ease;
+    }
+     
+  
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">EYOB CIRCUS </div>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Open navigation menu">☰</button>
+    <nav>
+      <ul class="navbar" id="navbar">
+        <button class="close-btn" onclick="toggleMenu()">×</button>
+        <li><a href="#home" onclick="closeMenu()">Home</a></li>
+        <li><a href="#about" onclick="closeMenu()">About</a></li>
+        <li><a href="#services" onclick="closeMenu()">Shows</a></li>
+        <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+        <li><a href="#booking" onclick="closeMenu()">Booking</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home">
+      <h2>Welcome to  Eyob Circus</h2>
+      <img src="rola.jpg" alt="Rola Bola Performance" />
+      <p>Experience amazing performances with our world-famous Rola Bola act and more! Enjoy the magic of fall with cozy lights and warm laughter under the big top.</p>
+    </section>
+
+    <section id="about">
+      <h2>About Us</h2>
+      <img src="eyob pc.jpg" alt="Circus Performer in Autumn" />
+      <p>We are a family-run circus with over 9 years of 
+        experience bringing joy and 
+        wonder across the UK. From acrobatics to comedy, 
+        our performers deliver magical experiences for all 
+        ages — especially magical in the fall season!</p>
+    </section>
+
+    <section id="services">
+      <h2>Our Shows</h2>
+      <img src="rola circus.jpg" alt="Autumn Juggling Show" />
+      <ul>
+        <li>Rola Bola Balancing Act</li>
+        <li>Acrobatic Performances</li>
+        <li>Cyr wheel act</li>
+        <li>Juggling and Comedy Shows</li>
+        <li>Hand vowelteg</li>
+        <li>Chines pole and mooore....</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <p>: <a href="mailto:emsht369@.com">Email</a></p>
+      <p>: <a href="tel:+447925468495">phone</a></p>
+    </section>
+
+    <section id="booking">
+      <h2>Book a Show   !</h2>
+      <form id="bookingForm" action="https://formspree.io/f/xrbleeeg" method="POST">
+        <div class="form-group">
+          <label for="name">Full Name *</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number *</label>
+          <input type="tel" id="phone" name="phone" required />
+        </div>
+        <div class="form-group">
+          <label for="date">Booking Date *</label>
+          <input type="date" id="date" name="date" required />
+        </div>
+        <div class="form-group">
+          <label for="time">Time *</label>
+          <input type="time" id="time" name="time" required />
+        </div>
+        <div class="form-group">
+          <label for="service"> Circus act *</label>
+          <select id="service" name="service" required>
+            <option value="">-- Choose a circus act  --</option>
+            <option value="Acrobatics Show">Acrobatics Show</option>
+            <option value="Rola Bola Performance">Rola Bola Performance</option>
+            <option value="Magic & Illusions">Magic & Illusions</option>
+            <option value="Full Family Package">cyr wheel</option>
+            <option value="Custom Show">Hand vowlteg Show</option>
+            <option value="Juggling & Comedy">Juggling & Comedy</option>
+            <option value="Cyr Wheel">Ladder</option>
+            <option value="Other">Other</option>
+
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Additional Notes</label>
+          <textarea id="message" name="message" rows="4" placeholder="Optional..."></textarea>
+        </div>
+        <button type="submit">Submit Booking</button>
+        <p class="success-message" id="successMsg">Your circus  booking has been submitted to Eyob!</p>
+      </form>
+    </section>
+
+  </main>
+  
+<a href="#home" class="back-to-top" style="position: fixed; 
+bottom: 20px; left: 20px; background-color: #e57c23; color: white; 
+padding: 10px 15px; border-radius: 50%; text-decoration: none; font-size: 1.5rem;">↑</a>
+
+  <main>
+    <h2>Find Us</h2>
+    <p>We perform across the world. Check our schedule for upcoming shows!</p>
+    <p>Location:  across the UK</p>
+    <p>Follow us on social media for updates!</p>
+
+<iframe src="https://www.google.com/maps/embed?pb=..." width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"> uk</iframe>
+  </main>
+  <footer>
+    <p>&copy; 2025 EMSHT Circus. All rights reserved.</p>
+    <p>Website designed by <a href="#">EYOB</a></p>
+  </footer>
+
+  <!-- Popup -->
+  <div class="popup" id="popupSuccess">
+    <h3>🎪 Booking Confirmed!</h3>
+    <h3>Thank you for booking with EYOB Circus. We'll be in touch soon!</h3>
+    <button onclick="document.getElementById('popupSuccess').style.display='none'">Close</button>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('navbar').classList.toggle('active');
+    }
+
+    function closeMenu() {
+      document.getElementById('navbar').classList.remove('active');
+    }
+
+    document.getElementById('bookingForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const form = e.target;
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          headers: {
+            'Accept': 'application/json'
+          },
+          body: new FormData(form)
+        });
+
+        if (response.ok) {
+          form.reset();
+          form.style.display = "none";
+          document.getElementById("popupSuccess").style.display = "block";
+          document.getElementById("successMsg").style.display = "block";
+        } else {
+          const data = await response.json();
+          if (data.errors) {
+            alert("Error: " + data.errors.map(err => err.message).join(", "));
+          } else {
+            alert("Failed to submit booking. Please try again.");
+          }
+        }
+      } catch (error) {
+        console.error("Submission failed", error);
+        alert("Something went wrong. Please try again.");
+      }
+    });
+  </script>
+
+</body>
+</html>
